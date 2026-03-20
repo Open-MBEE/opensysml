@@ -1,0 +1,8 @@
+*.egg-info/
+*.pyc
+__pycache__/
+build/
+dist/
+/.conda-bld
+/.conda/pkgs/cache
+/.conda

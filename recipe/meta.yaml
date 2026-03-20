@@ -1,0 +1,52 @@
+{% set version = "0.1.0" %}
+
+package:
+  name: opensysml-suite
+  version: {{ version }}
+
+source:
+  path: ..
+
+build:
+  number: 0
+
+outputs:
+  - name: opensysml
+    build:
+      noarch: python
+      script: python -m pip install ./packages/opensysml --no-deps --ignore-installed -vv
+    requirements:
+      host:
+        - python >=3.9
+        - pip
+        - hatchling >=1.24
+      run:
+        - python >=3.9
+    test:
+      imports:
+        - opensysml
+  - name: sysml
+    build:
+      noarch: python
+      script: python -m pip install ./packages/sysml --no-deps --ignore-installed -vv
+    requirements:
+      host:
+        - python >=3.9
+        - pip
+        - hatchling >=1.24
+      run:
+        - python >=3.9
+        - opensysml =={{ version }}
+    test:
+      imports:
+        - sysml
+
+about:
+  home: https://github.com/rkarban/opensysml
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Minimal packaging scaffold for OpenSysML and SysML.
+
+extra:
+  recipe-maintainers:
+    - rkarban
