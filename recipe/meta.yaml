@@ -1,4 +1,5 @@
 {% set version = "0.1.0" %}
+{% set python_min = "3.9" %}
 
 package:
   name: opensysml-suite
@@ -17,11 +18,11 @@ outputs:
       script: python -m pip install ./packages/opensysml --no-deps --ignore-installed -vv
     requirements:
       host:
-        - python >=3.9
+        - python {{ python_min }}
         - pip
         - hatchling >=1.24
       run:
-        - python >=3.9
+        - python >= {{ python_min }}
     test:
       imports:
         - opensysml
@@ -31,11 +32,11 @@ outputs:
       script: python -m pip install ./packages/sysml --no-deps --ignore-installed -vv
     requirements:
       host:
-        - python >=3.9
+        - python {{ python_min }}
         - pip
         - hatchling >=1.24
       run:
-        - python >=3.9
+        - python >= {{ python_min }}
         - opensysml =={{ version }}
     test:
       imports:
@@ -49,4 +50,4 @@ about:
 
 extra:
   recipe-maintainers:
-    - rkarban
+    - wobrschalek
